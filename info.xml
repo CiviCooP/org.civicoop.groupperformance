@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<extension key="org.civicoop.groupperformance" type="module">
+  <file>groupperformance</file>
+  <name>Group Performance Improvements</name>
+  <description>Alters the contact search query for performance</description>
+  <license>AGPL-3.0</license>
+  <maintainer>
+    <author>Jaap Jansma</author>
+    <email>jaap@edeveloper.nl</email>
+  </maintainer>
+  <urls>
+    <url desc="Main Extension Page">https://github.com/civicoop/org.civicoop.groupperformance</url>
+    <url desc="Documentation">https://github.com/civicoop/org.civicoop.groupperformance/README.md</url>
+    <url desc="Support">http://www.civicoop.org</url>
+    <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
+  </urls>
+  <releaseDate>2016-12-13</releaseDate>
+  <version>1.0</version>
+  <develStage>stable</develStage>
+  <compatibility>
+    <ver>4.6</ver>
+  </compatibility>
+  <civix>
+    <namespace>CRM/Groupperformance</namespace>
+  </civix>
+</extension>
