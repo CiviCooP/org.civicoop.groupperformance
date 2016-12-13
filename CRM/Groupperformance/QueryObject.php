@@ -46,6 +46,7 @@ contact_a.id IN (SELECT contact_id FROM civicrm_group_contact_cache WHERE group_
 
         list($qillop, $qillVal) = CRM_Contact_BAO_Query::buildQillForFieldValue('CRM_Contact_DAO_Group', 'id', $groupIds, $op);
         $query->_qill[$grouping][] = ts("Group(s) %1 %2", array(1 => $qillop, 2 => $qillVal));
+        $query->_qill[$grouping][] = ts("Group Status %1", array(1 => implode(' ' . ts('or') . ' ', array('Added'))));
       }
     }
     return NULL;
