@@ -32,10 +32,20 @@ class CRM_Groupperformance_QueryObject extends CRM_Contact_BAO_Query_Interface {
    *
    * @return null
    */
+  public function select(&$query) {
+    return NULL;
+  }
+
+  /**
+   * @param $query
+   *
+   * @return null
+   */
   public function where(&$query) {
     foreach($query->_params as $param) {
       if ($param[0] == 'group' && $param[1] == 'IN' && is_array($param[2]) && count($param[2]) > 0) {
         list($name, $op, $value, $grouping, $wildcard) = $param;
+        unset($query->_paramLookup['group']); // This prevents the building of the select query on the civicrm_group_contact
         $groupIds = array_keys($value);
         $clause = '(
 contact_a.id IN (SELECT contact_id FROM civicrm_group_contact WHERE status = \'Added\' AND group_id IN ('.implode(",", $groupIds).'))
