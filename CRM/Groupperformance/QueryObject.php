@@ -44,7 +44,7 @@ contact_a.id IN (SELECT contact_id FROM civicrm_group_contact_cache WHERE group_
 )';
         $query->_where[$grouping][] = $clause;
 
-        list($qillop, $qillVal) = CRM_Contact_BAO_Query::buildQillForFieldValue('CRM_Contact_DAO_Group', 'id', $value, $op);
+        list($qillop, $qillVal) = CRM_Contact_BAO_Query::buildQillForFieldValue('CRM_Contact_DAO_Group', 'id', $groupIds, $op);
         $query->_qill[$grouping][] = ts("Group(s) %1 %2", array(1 => $qillop, 2 => $qillVal));
       }
     }
