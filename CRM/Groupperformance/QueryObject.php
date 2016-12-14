@@ -6,10 +6,18 @@
 
 class CRM_Groupperformance_QueryObject extends CRM_Contact_BAO_Query_Interface {
 
+  /**
+   * We have to return the field 'group' otherwise the join on group and the where clause with
+   * the or in it will still be added. In other words returning 'group' means that we are overriding the
+   * handling of the group part of the query.
+   *
+   * @return array
+   */
   public function &getFields() {
-    return array(
+    $fields = array(
       'group' => 'group'
     );
+    return $fields;
   }
 
   public function getPanesMapper(&$panes) {
