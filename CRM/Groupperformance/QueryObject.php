@@ -15,7 +15,7 @@ class CRM_Groupperformance_QueryObject extends CRM_Contact_BAO_Query_Interface {
    */
   public function &getFields() {
     $fields = array(
-      'group' => 'group'
+      'group' => array('title' => ts('Groups')),
     );
     return $fields;
   }
@@ -70,19 +70,10 @@ class CRM_Groupperformance_QueryObject extends CRM_Contact_BAO_Query_Interface {
         unset($query->_paramLookup['group']); // This prevents the building of the select query on the civicrm_group_contact
 
         // Find all the groups that are part of a saved search.
-        $sql = "
-SELECT id, cache_date, saved_search_id, children
-FROM   civicrm_group
-WHERE  civicrm_group.id IN (".implode(",", $value).")
-  AND  ( saved_search_id != 0
-   OR    saved_search_id IS NOT NULL
-   OR    children IS NOT NULL )
-";
+        $sql = "SELECT id, cache_date, saved_search_id, children FROM   civicrm_group WHERE civicrm_group.id IN (".implode(",", $value).") AND cache_date IS NULL AND saved_search_id != 0 AND saved_search_id IS NOT NULL";
         $group = CRM_Core_DAO::executeQuery($sql);
         while ($group->fetch()) {
-          if (!$query->_smartGroupCache || $group->cache_date == NULL) {
-            CRM_Contact_BAO_GroupContactCache::load($group);
-          }
+          CRM_Contact_BAO_GroupContactCache::load($group);
         }
 
         $clause = '(
