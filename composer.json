@@ -1,0 +1,12 @@
+{
+  "name": "civicoop/org.civicoop.groupperformance",
+  "description": "Alters the contact search query for performance",
+  "type": "civicrm-module",
+  "authors": [
+    {
+      "name": "Jaap Jansma",
+      "email": "helpdesk@civicoop.org"
+    }
+  ],
+  "license": "AGPL-3.0"
+}
